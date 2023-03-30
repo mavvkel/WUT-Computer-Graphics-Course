@@ -8,16 +8,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FakesAssemblies\**" />
+    <EmbeddedResource Remove="FakesAssemblies\**" />
+    <None Remove="FakesAssemblies\**" />
+    <Page Remove="FakesAssemblies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Drawing.Common">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\dotnet\shared\Microsoft.WindowsDesktop.App\6.0.11\System.Drawing.Common.dll</HintPath>
+      <HintPath>Path\to\6.0.11\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\dotnet\shared\Microsoft.WindowsDesktop.App\6.0.11\System.Windows.Forms.dll</HintPath>
+      <HintPath>Path\to\6.0.11\System.Windows.Forms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Filters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalDesignTimeBuildInput Remove="FakesAssemblies\**" />
   </ItemGroup>
 
 </Project>
