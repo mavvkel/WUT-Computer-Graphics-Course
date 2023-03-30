@@ -1,0 +1,103 @@
+﻿<Window x:Class="CG_Task1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CG_Task1"
+        mc:Ignorable="d"
+        Title="MyImageEditor" SizeToContent="WidthAndHeight" MaxHeight="1200" 
+        WindowStartupLocation="CenterOwner" Foreground="{StaticResource DarkThemeFGBrush}" Background="{StaticResource DarkThemeBGBrush}">
+
+    <Window.Resources>
+        <ResourceDictionary
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="Menu">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+            </Style>
+            <Style TargetType="MenuItem" x:Key="Dark">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel>
+
+        <!-- Top menu -->
+        <Menu BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+            <MenuItem Header="File" Style="{StaticResource Dark}">
+                <MenuItem Name="OpenItem" Header="Open file" Foreground="Black" Click="Open_Click"/>
+                <MenuItem Name="SaveItem" Header="Save file" Foreground="Black" Click="Save_Click"/>
+                    <Separator />
+                    <MenuItem Header="Exit" Foreground="Black"/>
+            </MenuItem>
+            <MenuItem Header="Tools" Style="{StaticResource Dark}">
+                <MenuItem Name="FilterEditorItem" Header="Filter editor" Foreground="Black" Click="FilterEditor_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Left tools menu -->
+        <ScrollViewer DockPanel.Dock="Left" Width="120" VerticalScrollBarVisibility="Auto">
+            <Border BorderBrush="{StaticResource DarkThemeFGBrush}" BorderThickness="0,0,1,0">
+                <StackPanel Name="LeftToolbar">
+                    <Button Name="InverseBt" VerticalAlignment="Top" Click="InverseBt_Click">Inversion</Button>
+                    <Button Name="BrightenBt" VerticalAlignment="Top" Click="BrightenBt_Click">Brighten</Button>
+                    <Button Name="DarkenBt" VerticalAlignment="Top" Click="DarkenBt_Click">Darken</Button>
+                    <Button Name="EnchanceContrastBt" VerticalAlignment="Top" Click="EnchanceContrastBt_Click">Enchance contrast</Button>
+                    <Button Name="GammaCommpressionBt" VerticalAlignment="Top" Click="GammaCompressionBt_Click">Gamma compression</Button>
+                    <Button Name="GammaExpansionBt" VerticalAlignment="Top" Click="GammaExpansionBt_Click">Gamma expansion</Button>
+                    <Button Name="SimpleBlurBt" VerticalAlignment="Top" Click="SimpleBlurBt_Click">Simple blur</Button>
+                    <Button Name="GaussianBlurBt" VerticalAlignment="Top" Click="GaussianBlurBt_Click">Gaussian blur</Button>
+                    <Button Name="SharpenBt" VerticalAlignment="Top" Click="SharpenBt_Click">Sharpen</Button>
+                    <Button Name="DetectEdgesBt" VerticalAlignment="Top" Click="DetectEdgesBt_Click">Edge detection</Button>
+                    <Button Name="EmbossBt" VerticalAlignment="Top" Click="EmbossBt_Click">Emboss</Button>
+                    <Button Name="TaskFilterBt" VerticalAlignment="Top" Click="TaskFilterBt_Click">Task filter</Button>
+                    <Separator Height="25" Margin="25,0,25,0"/>
+                    <Button Name="ResizeBt" VerticalAlignment="Top" Click="ResizeBt_Click">Resize</Button>
+                    <Button Name="GrayscaleBt" VerticalAlignment="Top" Click="GrayscaleBt_Click">Grayscale</Button>
+                    <Button Name="AverageDitherBt" VerticalAlignment="Top" Click="AverageDitherBt_Click">Average dither</Button>
+                    <Button Name="KMeansBt" VerticalAlignment="Top" Click="KMeansBt_Click">K-Means quantization</Button>
+                    <Separator Height="25" Margin="25,0,25,0"/>
+                    <Button Name="ColorWheelBt" VerticalAlignment="Top" Click="ColorWheelBt_Click" Foreground="CornflowerBlue">Color wheel</Button>
+                    <Separator Height="25" Margin="25,0,25,0"/>
+                    <Button Name="ResetFiltersBt" VerticalAlignment="Top" Click="ResetFiltersBt_Click" Foreground="CornflowerBlue">Reset filters</Button>
+                </StackPanel>
+            </Border> 
+        </ScrollViewer>
+
+        <!-- Center image canvas -->
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <!-- Original image view -->
+            <ScrollViewer  Name="OriginalImageScrollViewer"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                <Image Margin="4,4,2,4" Name="OriginalImageView" />
+            </ScrollViewer>
+            <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Foreground="{StaticResource DarkThemeFGBrush}" FontStyle="Italic" Opacity="0.5">Original image</Label>
+
+            <!-- Processed image view -->
+            <ScrollViewer Name="ProcessedImageScrollViewer" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Image Grid.Column="1" Margin="4,4,2,4" Name="ProcessedImageView" />
+            </ScrollViewer>
+            <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Foreground="{StaticResource DarkThemeFGBrush}" FontStyle="Italic" Opacity="0.5">Processed image</Label>
+        </Grid>
+
+        <!-- Bottom status bar -->
+
+    </DockPanel>
+
+</Window>

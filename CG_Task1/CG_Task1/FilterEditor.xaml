@@ -1,0 +1,64 @@
+﻿<Window x:Class="CG_Task1.FilterEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CG_Task1"
+        mc:Ignorable="d"
+        Title="Filter editor" Height="350" Width="600"
+        WindowStartupLocation="CenterScreen" Foreground="{StaticResource DarkThemeFGBrush}" Background="{StaticResource DarkThemeBGBrush}"
+        ResizeMode="NoResize">
+
+
+    <Window.Resources>
+        <ResourceDictionary
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="Menu">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+            </Style>
+            <Style TargetType="MenuItem" x:Key="Dark">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+            </Style>
+            <Style TargetType="ListBox" x:Key="f">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=DarkThemeBGBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ResourceKey=DarkThemeFGBrush}"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel>
+        <Border BorderBrush="{StaticResource DarkThemeFGBrush}" BorderThickness="0,0,1,0">
+            <StackPanel DockPanel.Dock="Left" Width="120">
+                <ListBox Name="FilterListBox" Margin="2,5" Height="120" Background="{StaticResource DarkThemeBGBrush}" Foreground="{StaticResource DarkThemeFGBrush}" SelectionChanged="FilterListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Name}" Foreground="{StaticResource DarkThemeFGBrush}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+        </StackPanel>
+        </Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+                <Border BorderBrush="{StaticResource DarkThemeFGBrush}" BorderThickness="1" Width="266" Height="266">
+                    <Canvas Name="FilterGraph" Width="256" Height="256" Background="#FF242424" />
+                </Border>
+
+        </Grid>
+
+
+
+    </DockPanel>
+</Window>

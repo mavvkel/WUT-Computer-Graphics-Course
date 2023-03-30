@@ -1,0 +1,15 @@
+﻿<Application x:Class="CG_Task1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:CG_Task1"
+             StartupUri="MainWindow.xaml">
+
+    <!-- Static resources -->
+    <Application.Resources>
+        <SolidColorBrush x:Key="DarkThemeBGBrush" Color="#FF3C3C3C"/>
+        <SolidColorBrush x:Key="DarkThemeFGBrush" Color="#FFCCCCCC"/>
+        <sys:Double x:Key="DefaultImageViewHeight">460.0</sys:Double>
+        <sys:Double x:Key="DefaultImageViewWidth">350.0</sys:Double>
+    </Application.Resources>
+</Application>
